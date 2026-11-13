@@ -80,6 +80,27 @@ Dev Container에는 필요한 확장이 자동 설치된다. 기존 컨테이너
 - [Spotless Gradle 공식 문서](https://github.com/diffplug/spotless/tree/main/plugin-gradle)
 - [VS Code 확장 및 저장 시 포맷 설정](https://marketplace.visualstudio.com/items?itemName=richardwillis.vscode-spotless-gradle)
 
+## PMD 정적 분석
+
+모든 실습의 Java 소스와 테스트에 PMD 7.17.0을 공통 적용한다.
+`config/pmd/ruleset.xml`에서 null 검사 오류, 빈 catch 블록, 사용하지 않는 지역 변수·private 멤버 등
+기본 오류 탐지 규칙을 관리한다. 코드 포맷은 기존 Spotless 설정을 따른다.
+`check`와 `build`에서도 PMD를 실행하며, 규칙 위반이 있으면 빌드가 실패한다.
+
+```bash
+# 전체 실습의 소스와 테스트 분석
+./gradlew pmd
+
+# 특정 실습의 소스와 테스트 분석
+./gradlew :lab02-agent-design-review:pmdMain :lab02-agent-design-review:pmdTest
+```
+
+보고서는 각 실습의 `build/reports/pmd/` 아래에 `main.html`, `main.xml`, `test.html`, `test.xml`로 생성된다.
+분석할 소스가 없는 경우 해당 작업과 보고서 생성을 생략한다. 첫 실행 시 PMD 의존성을 내려받는다.
+
+- [Gradle PMD 플러그인 공식 문서](https://docs.gradle.org/8.14.3/userguide/pmd_plugin.html)
+- [PMD 규칙 설정 공식 문서](https://docs.pmd-code.org/pmd-doc-7.17.0/pmd_userdocs_making_rulesets.html)
+
 ## SpringDoc OpenAPI
 
 Gradle의 `implementation` 의존성으로 SpringDoc WebMVC UI starter를 사용한다.
