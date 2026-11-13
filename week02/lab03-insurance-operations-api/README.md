@@ -32,6 +32,7 @@ Default port: 8080.
 - Premiums: premium calculation and quotation
 - Payments: payment collection and reconciliation
 - Claims: claim submission and review
+- Members: member registration (`POST /api/members`)
 
 The service uses in-memory storage and sample records for local execution. Restarting the application resets stored data.
 
@@ -42,6 +43,28 @@ The service uses in-memory storage and sample records for local execution. Resta
 - `error`: API error responses
 
 For current endpoint details, refer to controller source and request/response models.
+
+## 회원 등록 API
+
+[회원 등록 명세](../../register.md)에 따라 `POST /api/members`를 제공한다.
+고객·보험 계약과 별도의 인메모리 회원 저장소를 사용하며, 재시작하면 초기화된다.
+
+```bash
+curl -i http://localhost:8080/api/members \
+  -H 'Content-Type: application/json' \
+  -d '{"name":"가상회원","email":"member@example.com","phoneNumber":"010-0000-0000","birthDate":"1995-06-15"}'
+```
+
+성공 시 `201`과 `id`, `name`, `email`, `phoneNumber`, `birthDate`, `createdAt`을 반환한다.
+필수 입력·생년월일 검증 실패와 잘못된 JSON은 `400`, 이메일·휴대전화번호 중복은 `409`,
+누락되거나 지원하지 않는 Content-Type은 `415`, 예상하지 못한 오류는 `500`이다.
+오류는 `code`, `message`, `fieldErrors` JSON 형식이며 개인정보를 포함하지 않는다.
+이름·이메일·전화번호를 정규화하며, 생년월일의 오늘 기준은 `Asia/Seoul`이다.
+동시에 같은 연락처로 등록해도 한 건만 저장한다. 인증은 교육용 명세에 따라 제공하지 않는다.
+
+```bash
+./gradlew :lab03-insurance-operations-api:test --tests '*Member*Test'
+```
 
 ## OpenAPI / Swagger UI
 
