@@ -14,7 +14,7 @@
   "containerEnv": {
     "JAVA_HOME": "/usr/local/sdkman/candidates/java/current"
   },
-  "postCreateCommand": "npm install -g @openai/codex",
+  "postCreateCommand": "npm install -g @openai/codex @modelcontextprotocol/inspector",
   "customizations": {
     "vscode": {
       "extensions": [
