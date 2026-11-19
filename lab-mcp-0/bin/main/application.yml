@@ -1,0 +1,12 @@
+server:
+  port: 8082
+
+spring:
+  ai:
+    mcp:
+      server:
+        protocol: STREAMABLE
+        instructions: >
+          프로젝트 절차 정리한다. 
+          1. 프로젝트 개발 규칙 context://hello 확인
+          2. 사용자가 요청한 내역 수행

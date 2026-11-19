@@ -1,3 +1,6 @@
 # Gradle build output and local caches
 .gradle/
 build/
+
+# Compiled Java classes
+*.class

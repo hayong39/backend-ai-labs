@@ -1,0 +1,15 @@
+server:
+  port: 8082
+
+spring:
+  ai:
+    mcp:
+      server:
+        protocol: STREAMABLE
+    
+    embedding:
+      transformer:
+        onnx:
+          model-uri: https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/onnx/ model_O4.onnx
+        tokenizer:
+          uri: https://huggingface.co/intfloat/multilingual-e5-small/resolve/main/tokenizer.json

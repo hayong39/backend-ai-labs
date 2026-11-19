@@ -8,6 +8,10 @@
 - [Lab 02 — Insurance Premium API](week02/lab02-agent-design-review/README.md)
 - [Lab 03 — Insurance Operations API](week02/lab03-insurance-operations-api/README.md)
 
+## MCP 실습
+
+- [Lab MCP — 문자열 Resource 테스트](lab-mcp-0/README.md): `./gradlew :lab-mcp-0:bootRun`으로 실행하며, MCP 연결 주소는 `http://localhost:8082/mcp`이다.
+
 ## GitHub Codespaces / Dev Container
 
 1. 저장소의 **Code → Codespaces → Create codespace on main**을 선택한다.
