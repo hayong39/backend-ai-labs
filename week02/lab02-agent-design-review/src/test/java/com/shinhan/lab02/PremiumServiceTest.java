@@ -27,6 +27,6 @@ class PremiumServiceTest {
 
   @Test
   void suspendedContractCannotBeQuoted() {
-        assertThrows(IllegalStateException.class, () -> service.quote(1004));
+    assertThrows(IllegalStateException.class, () -> service.quote(1004));
   }
 }
