@@ -1,6 +1,8 @@
 rootProject.name = 'backend-ai-labs'
 
 include 'lab-mcp-0'
+include 'lab-mcp-1'
+include 'lab-rag'
 
 include 'lab01-hello-world'
 project(':lab01-hello-world').projectDir = file('week02/lab01-hello-world')
