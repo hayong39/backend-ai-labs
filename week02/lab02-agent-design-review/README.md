@@ -78,8 +78,6 @@ src/test/java/com/shinhan/lab02/
 Codespaces에서는 전달된 포트 8080의 브라우저 주소 뒤에 위 경로를 붙인다.
 각 실습은 독립 실행하며, 동시에 실행할 때는 서로 다른 서버 포트를 사용한다.
 
-SpringDoc OpenAPI 2.6.0의 WebMVC UI starter를 사용한다.
-
 ## JUnit 5 테스트 환경
 
 `spring-boot-starter-test`, `junit-platform-launcher`, `useJUnitPlatform()`을 사용한다.

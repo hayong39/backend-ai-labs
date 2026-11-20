@@ -6,6 +6,22 @@ plugins {
 subprojects {
     pluginManager.withPlugin('java') {
         apply plugin: 'com.diffplug.spotless'
+        apply plugin: 'pmd'
+
+        pmd {
+            toolVersion = '7.17.0'
+            ruleSets = []
+            ruleSetFiles = rootProject.files('config/pmd/ruleset.xml')
+            ignoreFailures = false
+            consoleOutput = true
+        }
+
+        tasks.withType(Pmd).configureEach {
+            reports {
+                xml.required = true
+                html.required = true
+            }
+        }
 
         spotless {
             java {
@@ -25,6 +41,13 @@ tasks.register('test') {
     group = 'verification'
     description = 'Runs the JUnit tests for every lab.'
     dependsOn subprojects.collect { "${it.path}:test" }
+}
+
+tasks.register('pmd') {
+    group = 'verification'
+    description = 'Runs PMD analysis on main and test sources for every lab.'
+    dependsOn subprojects.collect { "${it.path}:pmdMain" }
+    dependsOn subprojects.collect { "${it.path}:pmdTest" }
 }
 
 tasks.named('check') {
